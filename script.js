@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const supportLinks = [
     'https://adrinolinks.com/support1',
     'https://adrinolinks.com/support2',
-    'https://adrinolinks.com/support3'
-        'https://adrinolinks.com/support4',
+    'https://adrinolinks.com/support3',
+    'https://adrinolinks.com/support4',
     'https://adrinolinks.com/support5',
     'https://adrinolinks.com/support6'
   ];
@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add event listener to the support button
   document.getElementById('supportButton').addEventListener('click', openSupportLink);
 
-  
   // Dummy data for dropdowns (replace with your actual data)
   const akashLinks = [
     { text: 'Link 1', url: 'https://example.com/link1' },
