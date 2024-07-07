@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adrino Links Application</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to the Home Page</h1>
-        <div class="links">
-            <a href="akash25.html">Akash 2024-25</a>
-            <a href="allen25.html">Allen 2024-25</a>
-            <a href="akash24.html">Akash 2023-24</a>
-            <a href="allen24.html">Allen 2023-24</a>
-            <a href="pw24.html">Physics Wallah 2023-24</a>
-            <a href="pw25.html">Physics Wallah 2024-25</a>
+  <div class="container">
+    <h1>Welcome to Adrino Links</h1>
+    <p>This page contains sensitive information. Please verify your access.</p>
+    <button id="verifyButton">Verify Access</button>
+    <div id="content" style="display: none;">
+      <h2>Dropdown Menu</h2>
+      <div class="dropdown">
+        <button class="dropbtn">Akash FT</button>
+        <div class="dropdown-content" id="akashDropdown">
+          <!-- Links will be dynamically added here -->
         </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Allen Leader</button>
+        <div class="dropdown-content" id="allenDropdown">
+          <!-- Links will be dynamically added here -->
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script src="js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
