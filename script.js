@@ -1,4 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // List of alternative redirect links
+  const redirectLinks = [
+    'https://adrinolinks.com//visit1',
+    'https://adrinolinks.com//visit2',
+    'https://adrinolinks.com//visit3',
+    'https://adrinolinks.com//visit4'
+  ];
+
+  // Function to randomly shuffle array
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  // Shuffle the array of redirect links
+  shuffleArray(redirectLinks);
+
   // Check if user has visited adrinolinks.com
   const hasVisited = localStorage.getItem('visitedAdrinoLinks');
 
@@ -6,18 +26,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // User has visited before, show content
     document.getElementById('content').style.display = 'block';
   } else {
-    // Redirect to adrinolinks.com
-    window.location.href = 'https://adrinolinks.com//visit1';
+    // Redirect to a randomly shuffled link
+    window.location.href = redirectLinks[0];
   }
 
   // Store visit in local storage
   localStorage.setItem('visitedAdrinoLinks', true);
 
-  // Remove local storage after 30 minutes
+  // Remove local storage after 30 minutes and redirect to the next link
   setTimeout(function() {
     localStorage.removeItem('visitedAdrinoLinks');
-    // Redirect again to adrinolinks.com
-    window.location.href = 'https://adrinolinks.com//visit1';
+    // Get the current redirect index from local storage
+    let currentIndex = localStorage.getItem('redirectIndex') || 0;
+    currentIndex = parseInt(currentIndex);
+
+    // Increment index for the next redirect
+    const nextIndex = (currentIndex + 1) % redirectLinks.length;
+    localStorage.setItem('redirectIndex', nextIndex);
+
+    // Redirect again to the next link
+    window.location.href = redirectLinks[nextIndex];
   }, 30 * 60 * 1000); // 30 minutes in milliseconds
 
   // Dummy data for dropdowns (replace with your actual data)
