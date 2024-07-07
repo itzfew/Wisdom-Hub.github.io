@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
   // List of alternative redirect links
   const redirectLinks = [
-    'https://adrinolinks.com//visit1',
-    'https://adrinolinks.com//visit2',
-    'https://adrinolinks.com//visit3',
-    'https://adrinolinks.com//visit4'
+    'https://adrinolinks.com/visit1',
+    'https://adrinolinks.com/visit2',
+    'https://adrinolinks.com/visit3',
+    'https://adrinolinks.com/visit4'
   ];
 
   // Function to randomly shuffle array
@@ -48,6 +48,29 @@ document.addEventListener('DOMContentLoaded', function() {
     window.location.href = redirectLinks[nextIndex];
   }, 30 * 60 * 1000); // 30 minutes in milliseconds
 
+  // List of alternative support links
+  const supportLinks = [
+    'https://adrinolinks.com/support1',
+    'https://adrinolinks.com/support2',
+    'https://adrinolinks.com/support3'
+        'https://adrinolinks.com/support4',
+    'https://adrinolinks.com/support5',
+    'https://adrinolinks.com/support6'
+  ];
+
+  // Shuffle the array of support links
+  shuffleArray(supportLinks);
+
+  // Function to open a random support link
+  function openSupportLink() {
+    const randomIndex = Math.floor(Math.random() * supportLinks.length);
+    window.open(supportLinks[randomIndex], '_blank');
+  }
+
+  // Add event listener to the support button
+  document.getElementById('supportButton').addEventListener('click', openSupportLink);
+
+  
   // Dummy data for dropdowns (replace with your actual data)
   const akashLinks = [
     { text: 'Link 1', url: 'https://example.com/link1' },
