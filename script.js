@@ -73,15 +73,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Dummy data for dropdowns (replace with your actual data)
   const akashLinks = [
-    { text: 'Link 1', url: 'https://example.com/link1' },
-    { text: 'Link 2', url: 'https://example.com/link2' },
-    { text: 'Link 3', url: 'https://example.com/link3' }
+    
+    { text: 'AIATS Schedule', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/aiats/aiatsschedule.pdf' },
+    { text: 'Aiats(01)-QP', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/akash/aiats-01-QP.pdf' },
+    { text: 'Aiats(01)-SN', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/akash/aiats-01-SN.pdf' }
   ];
 
   const allenLinks = [
-    { text: 'Link A', url: 'https://example.com/linkA' },
-    { text: 'Link B', url: 'https://example.com/linkB' },
-    { text: 'Link C', url: 'https://example.com/linkC' }
+    { text: 'Leader Schedule', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/Leaderschedule.pdf' },
+    { text: 'Leader(01)-QP', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/UNIT Test-01-QP.pdf' },
+    { text: 'Leader(01)-SN', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/Leader-01-SN.pdf' }
+    
+        { text: 'Leader(02)-QP', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/UNIT Test-02-QP.pdf' },
+    { text: 'Leader(02)-SN', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/Leader-02-SN.pdf' }
+                              { text: 'Leader(03)-QP', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/UNIT Test-03-QP.pdf' },
+    { text: 'Leader(03)-SN', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/Leader-03-SN.pdf' }
+
+
+    { text: 'Leader(04)-QP', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/UNIT Test-04-QP.pdf' },
+    { text: 'Leader(04)-SN', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/Leader-04-SN.pdf' }
   ];
 
   // Function to populate dropdown content
