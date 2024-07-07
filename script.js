@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+ document.addEventListener('DOMContentLoaded', () => {
     const linkContainer = document.getElementById('link-container');
 
     fetch('links.json')
