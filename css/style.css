@@ -32,3 +32,269 @@ h1 {
 .links a:hover {
     color: #0056b3;
 }
+
+#latest-date {
+    padding: 10px;
+    background-color: #007bff; /* Background color (adjust as needed) */
+    color: #fff; /* Text color */
+    border: 2px solid #0056b3; /* Border color */
+    border-radius: 10px; /* Border radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow for 3D effect */
+    text-align: center; /* Center the text */
+    margin-bottom: 20px; /* Add bottom margin for spacing */
+}
+
+
+/* Logo styling */
+.logo {
+    display: block;
+    width: 150px; /* Adjust the width as needed */
+    height: auto;
+    margin: 0 auto; /* Center the logo horizontally */
+    text-align: center; /* Center the text */
+    font-weight: bold; /* Apply bold font weight */
+    color: #ff00ff; /* Apply color */
+    border-bottom: 4px solid #ff00ff; /* Add colored border */
+    padding-bottom: 10px; /* Add space below the border */
+}
+ 
+/* Styling for the books catalogue section */
+.books-catalogue {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px; /* Add padding */
+    background-color: #f5f5f5; /* Add background color */
+    border-radius: 10px; /* Add border radius */
+}
+
+.books-catalogue h2 {
+    text-align: center;
+    border-bottom: 2px solid #ff00ff; /* Add colored border */
+    font-weight: bold;
+    margin-bottom: 20px; /* Add margin bottom for spacing */
+}
+
+/* Styling for individual book posts */
+.book-post {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px; /* Add border radius */
+}
+
+.book-post img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Make sure the image doesn't overflow its container */
+    margin: 0 auto 10px; /* Center the image and add bottom margin */
+}
+
+.book-post p {
+    font-size: 14px;
+    margin-bottom: 10px; /* Add bottom margin for spacing */
+}
+
+.book-post .download-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.book-post .download-button:hover {
+    background-color: #0056b3; /* Change color on hover */
+}
+
+/* Styling for the menu toggle button */
+.menu-toggle {
+    display: none; /* Hide by default on larger screens */
+    background-color: #000; /* Black background color */
+    width: 30px; /* Adjust width as needed */
+    height: 30px; /* Adjust height as needed */
+    position: relative;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px auto;
+}
+
+/* Styling for the menu items */
+.menu-items {
+    margin-top: 10px; /* Add gap between lists */
+}
+
+.menu-items li {
+    display: inline-block;
+    margin-right: 20px;
+    position: relative;
+}
+
+.menu-items li .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #000;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.menu-items li:hover .dropdown-menu {
+    display: block;
+}
+
+.menu-items li .dropdown-menu li {
+    display: block;
+    margin: 5px 0;
+}
+
+.menu-items li .dropdown-menu li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu-items li .dropdown-menu li a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Show on smaller screens */
+        cursor: pointer;
+    }
+
+    .menu-items {
+        display: none; /* Hide menu items by default on smaller screens */
+    }
+
+    .menu-items.active {
+        display: block; /* Show menu items when menu is toggled */
+    }
+}
+
+/* Styling for the share button */
+#share-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#share-btn img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Styling for the about section */
+.about {
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-image: url('img/slider/slide_1.png'); /* Replace 'your-background-image.jpg' with the path to your background image */
+    background-size: cover; /* Cover the entire section with the background image */
+    color: #ffffff; /* Set text color to white for better readability */
+}
+
+.about h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.about p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+/* Styling for the footer */
+footer {
+    background-color: #222; /* Dark black color */
+    color: #fff; /* Text color */
+    padding: 20px;
+}
+
+.footer-section {
+    margin-bottom: 20px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 5px;
+}
+
+.footer-section p {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.footer-section p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.footer-section p a:hover {
+    text-decoration: underline;
+}
+
+.footer-section ul li button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.footer-section ul li button:hover {
+    background-color: #0056b3;
+}
+
+/* Additional footer for copyright */
+.footer.copyright {
+    text-align: center;
+    background-color: #f8f9fa; /* Change to your desired color */
+    color: #fff;
+    padding: 10px 0;
+}
+
+.post {
+    border: 2px solid #3366ff; /* Add border */
+    padding: 20px;
+    display: inline-block;
+}
+
+.timer-text {
+    font-weight: bold;
+    font-size: 24px;
+    color: #3366ff;
+    margin: 0;
+}
+
+.start-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3366ff;
+    color: white;
+    text-decoration: none;
+    border: 2px solid #3366ff; /* Add border */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.start-button:hover {
+    background-color: #003366; /* Change color on hover */
+}
