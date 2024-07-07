@@ -68,7 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Add event listener to the support button
-  document.getElementById('supportButton').addEventListener('click', openSupportLink);
+  const supportButton = document.getElementById('supportButton');
+  supportButton.addEventListener('click', openSupportLink);
 
   // Dummy data for dropdowns (replace with your actual data)
   const akashLinks = [
