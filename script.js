@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Dummy data for dropdowns (replace with your actual data)
   const akashLinks = [
-    { text: 'AIATS Schedule', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/aiats/aiatsschedule.pdf' },
+    { text: 'AIATS Schedule', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/akash/aiatsschedule.pdf' },
     { text: 'Aiats(01)-QP', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/akash/aiats-01-QP.pdf' },
     { text: 'Aiats(01)-SN', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/akash/aiats-01-SN.pdf' }
   ];
