@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('content').style.display = 'block';
   } else {
     // Redirect to adrinolinks.com
-    window.location.href = 'https://adrinolinks.com';
+    window.location.href = 'https://adrinolinks.com//visit1';
   }
 
   // Store visit in local storage
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
   setTimeout(function() {
     localStorage.removeItem('visitedAdrinoLinks');
     // Redirect again to adrinolinks.com
-    window.location.href = 'https://adrinolinks.com';
+    window.location.href = 'https://adrinolinks.com//visit1';
   }, 30 * 60 * 1000); // 30 minutes in milliseconds
 
   // Dummy data for dropdowns (replace with your actual data)
