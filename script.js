@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const allenLinks = [
     { text: 'Leader Schedule', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/Leaderschedule.pdf' },
-    { text: 'Leader(01)-QP', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/UNIT Test-01-QP.pdf' },
-    { text: 'Leader(01)-SN', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/Leader-01-SN.pdf' },
+    { text: 'Leader(01)-QP', url: 'https://adrinolinks.com/allenleader1' },
+    { text: 'Leader(01)-SN', url: 'https://adrinolinks.com/allenleader1S' },
     { text: 'Leader(02)-QP', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/UNIT Test-02-QP.pdf' },
     { text: 'Leader(02)-SN', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/Leader-02-SN.pdf' },
     { text: 'Leader(03)-QP', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/UNIT Test-03-QP.pdf' },
