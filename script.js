@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Store visit in local storage
   localStorage.setItem('visitedAdrinoLinks', true);
 
-  // Remove local storage after 30 minutes and redirect to the next link
+  // Remove local storage after 1 hour and redirect to the next link
   setTimeout(function() {
     localStorage.removeItem('visitedAdrinoLinks');
     // Get the current redirect index from local storage
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Redirect again to the next link
     window.location.href = redirectLinks[nextIndex];
-  }, 30 * 60 * 1000); // 30 minutes in milliseconds
+  }, 60 * 60 * 1000); // 1 hour in milliseconds
 
   // List of alternative support links
   const supportLinks = [
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Dummy data for dropdowns (replace with your actual data)
   const akashLinks = [
-    { text: 'AIATS Schedule', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/akash/aiatsschedule.pdf' },
+    { text: 'AIATS Schedule', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/aiats/aiatsschedule.pdf' },
     { text: 'Aiats(01)-QP', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/akash/aiats-01-QP.pdf' },
     { text: 'Aiats(01)-SN', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/akash/aiats-01-SN.pdf' }
   ];
