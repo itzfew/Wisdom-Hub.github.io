@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+ document.addEventListener('DOMContentLoaded', function() {
   // List of alternative support links
   const supportLinks = [
     'https://adrinolinks.com/support1',
