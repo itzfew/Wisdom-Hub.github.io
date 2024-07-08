@@ -24,8 +24,8 @@
     { text: 'AIATS Schedule ■', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/akash/aiatsschedule.pdf' },
 { text: 'FT Schedule', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/akash/ftschedule.pdf' },
 
-    { text: 'FT(01)-QP', url: 'https://adrinolinks.com/akashft1' },
-    { text: 'FT(01)-SN', url: 'https://adrinolinks.com/akashft1S' }
+    { text: 'FT(01)-QP ■', url: 'https://adrinolinks.com/akashft1' },
+    { text: 'FT(01)-SN ■', url: 'https://adrinolinks.com/akashft1S' }
   ];
 
   const allenLinks = [
