@@ -6,9 +6,9 @@ $paymentId = $_GET['paymentId'];
 $PayerID = $_GET['PayerID'];
 
 // PayPal API credentials
-$clientId = 'AYOynJ7bpOrPL5l2p90uIwGSL68XrWvweIhb1OAyKCiSmHjy7L1vTqY9B-lCL5ljKQ2gjGIxyG3pPWEK';
-$secret = 'EHeO8JN8kf6DV8HyoJ9iWI0vtmnO9I_jdZN5rUGjObvTmPTqAaTqXXiO_81e7tXi86mRIjrSJxPlVYOe';
-$apiUrl = 'https://api-m.sandbox.paypal.com'; // Sandbox URL
+$clientId = 'AcZgIgCccQToTkUrl2jnMJctBcxHWwFVdg1J-YbbfSnrXIR0YR-H4DM23tXy-mv7q6u_ogRt7k_CwXbh';
+$secret = 'EJyxplqpggYxQLoGIGa0wmvkvxjYwSKFc0VT72rv8hc4jJj6NcsAeWUzX-i6nIbjxhl99unX8aNejEVs';
+$apiUrl = 'https://api-m.sandbox.paypal.com'; // Sandbox URL for testing
 
 // Execute payment
 $ch = curl_init($apiUrl . '/v1/payments/payment/' . $paymentId . '/execute');
