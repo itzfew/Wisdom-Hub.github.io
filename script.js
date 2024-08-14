@@ -1,59 +1,106 @@
- document.addEventListener('DOMContentLoaded', function() {
-  // List of alternative support links
-  const supportLinks = [
-    'https://adrinolinks.com/support1',
-    'https://adrinolinks.com/support2',
-    'https://adrinolinks.com/support3',
-    'https://adrinolinks.com/support4',
-    'https://adrinolinks.com/support5',
-    'https://adrinolinks.com/support6'
-  ];
+document.addEventListener('DOMContentLoaded', () => {
+    // Example books with images and descriptions
+    const books = [
+        { id: 1, title: 'The Great Gatsby', price: 10, image: 'images/gatsby.jpg', description: 'A classic novel by F. Scott Fitzgerald.' },
+        { id: 2, title: '1984', price: 15, image: 'images/1984.jpg', description: 'A dystopian social science fiction novel by George Orwell.' },
+        { id: 3, title: 'To Kill a Mockingbird', price: 20, image: 'images/mockingbird.jpg', description: 'A novel by Harper Lee published in 1960.' }
+    ];
 
-  // Function to open a random support link
-  function openSupportLink() {
-    const randomIndex = Math.floor(Math.random() * supportLinks.length);
-    window.open(supportLinks[randomIndex], '_blank');
-  }
+    let cart = [];
+    let discountApplied = false;
+    const discountCode = 'SAVE10'; // Example discount code for 10% off
 
-  // Add event listener to the support button
-  const supportButton = document.getElementById('supportButton');
-  supportButton.addEventListener('click', openSupportLink);
+    const booksContainer = document.getElementById('books');
+    const cartCount = document.getElementById('cart-count');
+    const checkoutSection = document.getElementById('checkout');
+    const checkoutItems = document.getElementById('checkout-items');
+    const totalPriceElement = document.getElementById('total-price');
+    const discountMessage = document.getElementById('discount-message');
 
-  // Dummy data for dropdowns (replace with your actual data)
-  const akashLinks = [
-    { text: 'AIATS Schedule ■', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/akash/aiatsschedule.pdf' },
-{ text: 'FT Schedule ■', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/akash/ftschedule.pdf' },
+    function renderBooks() {
+        booksContainer.innerHTML = '';
+        books.forEach(book => {
+            const bookDiv = document.createElement('div');
+            bookDiv.classList.add('book');
+            bookDiv.innerHTML = `
+                <img src="${book.image}" alt="${book.title}">
+                <h3>${book.title}</h3>
+                <p>${book.description}</p>
+                <p>$${book.price}</p>
+                <button onclick="addToCart(${book.id})">Add to Cart</button>
+            `;
+            booksContainer.appendChild(bookDiv);
+        });
+    }
 
-    { text: 'FT(01)-QP ■', url: 'https://adrinolinks.com/akashft1' },
-    { text: 'FT(01)-SN ■', url: 'https://adrinolinks.com/akashft1S' }
-  ];
+    function addToCart(id) {
+        const book = books.find(b => b.id === id);
+        cart.push(book);
+        updateCart();
+    }
 
-  const allenLinks = [
-    { text: 'Leader Schedule ■', url: 'https://itzfew.github.io/Wisdom-Hub.github.io/allen/Leaderschedule.pdf' },
+    function updateCart() {
+        cartCount.textContent = cart.length;
+        if (cart.length > 0) {
+            checkoutSection.classList.remove('hidden');
+            renderCartItems();
+        } else {
+            checkoutSection.classList.add('hidden');
+        }
+    }
 
-    { text: 'Leader(01)-QP ■', url: 'https://adrinolinks.com/allenleader1' },
-    { text: 'Leader(01)-SN ■', url: 'https://adrinolinks.com/allenleader1S' },
-    { text: 'Leader(02)-QP', url: 'https://adrinolinks.com/allenleader2' },
-    { text: 'Leader(02)-SN', url: 'https://adrinolinks.com/allenleader2S' },
-    { text: 'Leader(03)-QP', url: 'https://adrinolinks.com/allenleader3' },
-    { text: 'Leader(03)-SN', url: 'https://adrinolinks.com/allenleader3S' },
-    { text: 'Leader(04)-QP', url: 'https://adrinolinks.com/allenleader4' },
-    { text: 'Leader(04)-SN', url: 'https://adrinolinks.com/allenleader4S' }
-  ];
+    function renderCartItems() {
+        checkoutItems.innerHTML = '';
+        const cartItems = cart.reduce((acc, item) => {
+            if (!acc[item.id]) acc[item.id] = { ...item, quantity: 0 };
+            acc[item.id].quantity += 1;
+            return acc;
+        }, {});
 
-  // Function to populate column content
-  function populateLinks(containerId, links) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = ''; // Clear previous content
-    links.forEach(link => {
-      const linkElement = document.createElement('a');
-      linkElement.href = link.url;
-      linkElement.textContent = link.text;
-      container.appendChild(linkElement);
+        let totalPrice = 0;
+
+        for (const item of Object.values(cartItems)) {
+            const itemDiv = document.createElement('div');
+            itemDiv.innerHTML = `
+                ${item.title} - $${item.price} x ${item.quantity} 
+                <button onclick="removeFromCart(${item.id})">Remove</button>
+            `;
+            checkoutItems.appendChild(itemDiv);
+            totalPrice += item.price * item.quantity;
+        }
+
+        if (discountApplied) {
+            totalPrice *= 0.9; // 10% discount
+        }
+
+        totalPriceElement.textContent = totalPrice.toFixed(2);
+    }
+
+    function removeFromCart(id) {
+        cart = cart.filter(book => book.id !== id);
+        updateCart();
+    }
+
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+        alert('Thank you for your purchase!');
+        cart = [];
+        updateCart();
+        discountApplied = false;
+        document.getElementById('discount-code').value = '';
+        discountMessage.textContent = '';
     });
-  }
 
-  // Populate columns with links
-  populateLinks('akashLinks', akashLinks);
-  populateLinks('allenLinks', allenLinks);
+    document.getElementById('apply-discount').addEventListener('click', () => {
+        const code = document.getElementById('discount-code').value;
+        if (code === discountCode) {
+            discountApplied = true;
+            discountMessage.textContent = 'Discount applied!';
+        } else {
+            discountMessage.textContent = 'Invalid discount code.';
+        }
+        renderCartItems();
+    });
+
+    // Initial render of books
+    renderBooks();
 });
