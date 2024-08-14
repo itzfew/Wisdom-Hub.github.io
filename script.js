@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Example books with images and descriptions
     const books = [
         { id: 1, title: 'The Great Gatsby', price: 10, image: 'images/gatsby.jpg', description: 'A classic novel by F. Scott Fitzgerald.' },
         { id: 2, title: '1984', price: 15, image: 'images/1984.jpg', description: 'A dystopian social science fiction novel by George Orwell.' },
@@ -33,11 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function addToCart(id) {
+    window.addToCart = function(id) {
         const book = books.find(b => b.id === id);
         cart.push(book);
         updateCart();
-    }
+    };
 
     function updateCart() {
         cartCount.textContent = cart.length;
@@ -62,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (const item of Object.values(cartItems)) {
             const itemDiv = document.createElement('div');
             itemDiv.innerHTML = `
-                ${item.title} - $${item.price} x ${item.quantity} 
+                ${item.title} - $${item.price} x ${item.quantity}
                 <button onclick="removeFromCart(${item.id})">Remove</button>
             `;
             checkoutItems.appendChild(itemDiv);
@@ -76,10 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
         totalPriceElement.textContent = totalPrice.toFixed(2);
     }
 
-    function removeFromCart(id) {
+    window.removeFromCart = function(id) {
         cart = cart.filter(book => book.id !== id);
         updateCart();
-    }
+    };
 
     document.getElementById('checkout-btn').addEventListener('click', () => {
         alert('Thank you for your purchase!');
