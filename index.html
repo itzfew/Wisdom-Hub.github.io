@@ -34,7 +34,7 @@
             width: 100%;
             max-width: 300px;
         }
-        .input-container button {
+        .input-container button, .restart-button {
             padding: 15px 25px;
             font-size: 18px;
             border: none;
@@ -44,7 +44,7 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        .input-container button:hover {
+        .input-container button:hover, .restart-button:hover {
             background-color: #218838;
         }
         .greeting-container {
@@ -97,6 +97,7 @@
     <div class="greeting-container" id="greeting-container">
         <h1 id="greetingMessage"></h1>
         <button class="share-button" onclick="shareOnWhatsApp()">Share on WhatsApp</button>
+        <button class="restart-button" onclick="restart()">Enter Your Name</button>
     </div>
 </div>
 
@@ -126,6 +127,12 @@
         window.open(whatsappUrl, '_blank');
     }
 
+    function restart() {
+        document.getElementById('greeting-container').style.display = 'none';
+        document.getElementById('input-container').style.display = 'block';
+        document.getElementById('nameInput').value = ''; // Clear the input field
+    }
+
     // Show greeting based on URL parameter
     document.addEventListener('DOMContentLoaded', function () {
         const urlParams = new URLSearchParams(window.location.search);
@@ -135,6 +142,8 @@
             document.getElementById('greetingMessage').textContent = greetingMessage;
             document.getElementById('input-container').style.display = 'none';
             document.getElementById('greeting-container').style.display = 'block';
+        } else {
+            document.getElementById('input-container').style.display = 'block';
         }
     });
 </script>
