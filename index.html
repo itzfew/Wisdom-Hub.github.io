@@ -14,6 +14,8 @@
             margin: 0;
             background: url('https://source.unsplash.com/1600x900/?eid') no-repeat center center fixed;
             background-size: cover;
+            color: #333;
+            overflow: hidden;
         }
         .container {
             text-align: center;
@@ -21,6 +23,37 @@
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            white-space: nowrap;
+        }
+        .marquee {
+            display: flex;
+            align-items: center;
+            animation: marquee 30s linear infinite;
+        }
+        .marquee img {
+            height: 50px;
+            margin: 0 15px;
+        }
+        .marquee-text {
+            font-size: 20px;
+            margin: 0 15px;
+        }
+        @keyframes marquee {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
         }
         .input-container, .greeting-container {
             display: none;
@@ -53,6 +86,7 @@
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
             animation: fadeIn 2s;
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
         }
         .greeting-container h1 {
             font-size: 28px;
@@ -60,7 +94,7 @@
             margin-bottom: 20px;
             animation: zoomIn 1.5s;
         }
-        .share-button {
+        .share-button, .restart-button {
             background-color: #25D366;
             color: white;
             border: none;
@@ -73,6 +107,36 @@
         .share-button:hover {
             background-color: #1DA851;
         }
+        .restart-button {
+            background-color: #007BFF;
+        }
+        .restart-button:hover {
+            background-color: #0056b3;
+        }
+        .countdown {
+            font-size: 24px;
+            color: #FF5722;
+            margin: 20px 0;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .flower-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+        }
+        .flower-container img {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+        }
+        .decorative {
+            margin: 20px 0;
+            font-size: 16px;
+        }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -81,11 +145,34 @@
             from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Decorative Flowers -->
+    <div class="flower-container">
+        <img src="https://www.verywellfit.com/thmb/60r4JxC6ZY8YCBZkVjHzw6U4T0M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Eid-Flowers-5b3a5ddc46e0fb0037b05e69.jpg" alt="Flower 1">
+        <img src="https://www.verywellfit.com/thmb/60r4JxC6ZY8YCBZkVjHzw6U4T0M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Eid-Flowers-5b3a5ddc46e0fb0037b05e69.jpg" alt="Flower 2">
+    </div>
+
+    <!-- Marquee for Greetings -->
+    <div class="marquee-container">
+        <div class="marquee">
+            <img src="https://d3edcl142d7grd.cloudfront.net/flowers-n-gifts/vendordata/resized/unbox178_1_1.jpg" alt="Flower 1">
+            <span class="marquee-text">🌙 Eid Mubarak! May this special day bring peace, happiness, and prosperity to everyone. 🌟</span>
+            <img src="https://www.verywellfit.com/thmb/60r4JxC6ZY8YCBZkVjHzw6U4T0M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Eid-Flowers-5b3a5ddc46e0fb0037b05e69.jpg" alt="Flower 2">
+        </div>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="countdown" id="countdown"></div>
+
     <!-- Step 1: Name Input -->
     <div class="input-container" id="input-container">
         <h2>Enter Your Name for a Special Eid Greeting</h2>
@@ -96,8 +183,14 @@
     <!-- Step 2: Greeting and Share Button -->
     <div class="greeting-container" id="greeting-container">
         <h1 id="greetingMessage"></h1>
+        <p class="decorative">Wishing you a joyous and blessed Eid! May your life be filled with happiness and prosperity.</p>
         <button class="share-button" onclick="shareOnWhatsApp()">Share on WhatsApp</button>
-        <button class="restart-button" onclick="restart()">Enter Your Name</button>
+        <button class="restart-button" onclick="restart()">Enter Another Name</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Created with ❤️ for Eid Mubarak. Have a wonderful celebration!
     </div>
 </div>
 
@@ -116,6 +209,9 @@
             const greetingMessage = `Eid Mubarak, ${name}! Wishing you joy and prosperity for 2025!`;
             document.getElementById('greetingMessage').textContent = greetingMessage;
             document.getElementById('greeting-container').style.display = 'block';
+
+            // Start the countdown timer
+            startCountdown();
         } else {
             alert('Please enter a name.');
         }
@@ -133,6 +229,26 @@
         document.getElementById('nameInput').value = ''; // Clear the input field
     }
 
+    function startCountdown() {
+        const endDate = new Date('2025-04-10T00:00:00'); // Set to a future date for the countdown
+        function updateCountdown() {
+            const now = new Date();
+            const timeDiff = endDate - now;
+            if (timeDiff <= 0) {
+                document.getElementById('countdown').textContent = 'Happy Eid!';
+                clearInterval(interval);
+                return;
+            }
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+            document.getElementById('countdown').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s until Eid!`;
+        }
+        updateCountdown();
+        const interval = setInterval(updateCountdown, 1000);
+    }
+
     // Show greeting based on URL parameter
     document.addEventListener('DOMContentLoaded', function () {
         const urlParams = new URLSearchParams(window.location.search);
@@ -142,6 +258,9 @@
             document.getElementById('greetingMessage').textContent = greetingMessage;
             document.getElementById('input-container').style.display = 'none';
             document.getElementById('greeting-container').style.display = 'block';
+
+            // Start the countdown timer
+            startCountdown();
         } else {
             document.getElementById('input-container').style.display = 'block';
         }
