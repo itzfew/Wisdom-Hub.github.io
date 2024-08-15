@@ -3,32 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookstore</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Eid Greeting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        .input-container, .greeting-container {
+            display: none;
+        }
+        .input-container input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        .input-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #25D366; /* WhatsApp green */
+            color: white;
+            cursor: pointer;
+        }
+        .input-container button:hover {
+            background-color: #1DA851;
+        }
+        .greeting-container {
+            border: 5px solid #4CAF50; /* Green border */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .greeting-container h1 {
+            font-size: 24px;
+            color: #4CAF50;
+        }
+        .share-button {
+            background-color: #25D366; /* WhatsApp green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .share-button:hover {
+            background-color: #1DA851;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Bookstore</h1>
-        <div id="cart">
-            <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
-        </div>
-    </header>
-    <main>
-        <section id="books">
-            <!-- Books will be dynamically added here -->
-        </section>
-        <section id="checkout" class="hidden">
-            <h2>Checkout</h2>
-            <div id="checkout-items"></div>
-            <div id="discount-section">
-                <input type="text" id="discount-code" placeholder="Enter discount code">
-                <button id="apply-discount">Apply Discount</button>
-                <p id="discount-message"></p>
-            </div>
-            <h3>Total: $<span id="total-price">0</span></h3>
-            <button id="checkout-btn">Proceed to Checkout</button>
-        </section>
-    </main>
-    <script src="script.js"></script>
+
+<div class="container">
+    <!-- Step 1: Name Input -->
+    <div class="input-container" id="input-container">
+        <input type="text" id="nameInput" placeholder="Enter your name" />
+        <button onclick="continueToGreeting()">Continue</button>
+    </div>
+
+    <!-- Step 2: Greeting and Share Button -->
+    <div class="greeting-container" id="greeting-container">
+        <h1 id="greetingMessage"></h1>
+        <button class="share-button" onclick="shareOnWhatsApp()">Share on WhatsApp</button>
+    </div>
+</div>
+
+<script>
+    // Show the input container on page load
+    document.getElementById('input-container').style.display = 'block';
+
+    function continueToGreeting() {
+        const name = document.getElementById('nameInput').value.trim();
+        if (name) {
+            const currentUrl = new URL(window.location.href);
+            currentUrl.searchParams.set('name', name);
+            history.replaceState(null, '', currentUrl);
+
+            document.getElementById('input-container').style.display = 'none';
+            const greetingMessage = `Eid Mubarak, ${name}! Wishing you joy and prosperity for 2025!`;
+            document.getElementById('greetingMessage').textContent = greetingMessage;
+            document.getElementById('greeting-container').style.display = 'block';
+        } else {
+            alert('Please enter a name.');
+        }
+    }
+
+    function shareOnWhatsApp() {
+        const url = new URL(window.location.href);
+        const whatsappUrl = `https://api.whatsapp.com/send?text=Check%20out%20this%20Eid%20greeting!%20${encodeURIComponent(url)}`;
+        window.open(whatsappUrl, '_blank');
+    }
+
+    // Show greeting based on URL parameter
+    document.addEventListener('DOMContentLoaded', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        if (name) {
+            const greetingMessage = `Eid Mubarak, ${name}! Wishing you joy and prosperity for 2025!`;
+            document.getElementById('greetingMessage').textContent = greetingMessage;
+            document.getElementById('input-container').style.display = 'none';
+            document.getElementById('greeting-container').style.display = 'block';
+        }
+    });
+</script>
+
 </body>
 </html>
