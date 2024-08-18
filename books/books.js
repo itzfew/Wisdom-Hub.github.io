@@ -2,19 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const books = [
         {
             title: 'NEET 11 YEARS PYQ CHAPTERWISE',
-            image: 'https://itzfew.github.io/Wisdom-Hub.github.io/books/Img/neetpyq11.png',
             examName: 'NEET',
             downloadLink: 'https://adrinolinks.com/11yearsneet'
         },
         {
             title: 'Advanced Physics',
-            image: 'https://via.placeholder.com/200x300?text=Physics',
             examName: 'Physics Exam',
             downloadLink: 'https://example.com/physics.pdf'
         },
         {
             title: 'Introduction to Chemistry',
-            image: 'https://via.placeholder.com/200x300?text=Chemistry',
             examName: 'Chemistry Exam',
             downloadLink: 'https://example.com/chemistry.pdf'
         }
@@ -33,6 +30,69 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTitle = document.getElementById('modal-title');
     const modalExamName = document.getElementById('modal-exam-name');
     const modalDownloadLink = document.getElementById('modal-download-link');
+    const canvas = document.createElement('canvas');
+    canvas.width = 220; // Match the width of the .book element
+    canvas.height = 330; // Adjust height as needed
+    const ctx = canvas.getContext('2d');
+
+    function generateBookImage(title, examName) {
+        const width = canvas.width;
+        const height = canvas.height;
+
+        // Clear the canvas
+        ctx.clearRect(0, 0, width, height);
+
+        // Draw the book texture
+        ctx.fillStyle = '#f4f4f4'; // Light book texture color
+        ctx.fillRect(0, 0, width, height);
+
+        // Add a gradient border
+        const gradient = ctx.createLinearGradient(0, 0, width, height);
+        gradient.addColorStop(0, '#007bff'); // Blue color
+        gradient.addColorStop(1, '#0056b3'); // Darker blue
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 5;
+        ctx.strokeRect(0, 0, width, height);
+
+        // Draw title text
+        ctx.font = 'bold 16px Arial';
+        ctx.fillStyle = '#333'; // Dark color for text
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        wrapText(ctx, title, width / 2, 20, width - 20, 22);
+
+        // Draw exam name text
+        ctx.font = 'italic 14px Arial';
+        ctx.fillStyle = '#666'; // Slightly lighter color for text
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(examName, width / 2, height - 20);
+
+        // Return the data URL of the generated image
+        return canvas.toDataURL('image/png');
+    }
+
+    function wrapText(context, text, x, y, maxWidth, lineHeight) {
+        const words = text.split(' ');
+        let line = '';
+        const lines = [];
+
+        for (let i = 0; i < words.length; i++) {
+            const testLine = line + words[i] + ' ';
+            const metrics = context.measureText(testLine);
+            const testWidth = metrics.width;
+            if (testWidth > maxWidth && i > 0) {
+                lines.push(line);
+                line = words[i] + ' ';
+            } else {
+                line = testLine;
+            }
+        }
+        lines.push(line);
+
+        for (let j = 0; j < lines.length; j++) {
+            context.fillText(lines[j], x, y + (j * lineHeight));
+        }
+    }
 
     function renderBooksForPage(filteredBooks, page) {
         const startIndex = (page - 1) * booksPerPage;
@@ -47,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openModal(book) {
-        modalImage.src = book.image;
+        modalImage.src = generateBookImage(book.title, book.examName);
         modalTitle.textContent = book.title;
         modalExamName.textContent = book.examName;
         modalDownloadLink.href = book.downloadLink;
@@ -64,8 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const bookElement = document.createElement('div');
             bookElement.classList.add('book');
 
+            // Generate image URL
+            const imageUrl = generateBookImage(book.title, book.examName);
+
             bookElement.innerHTML = `
-                <img src="${book.image}" alt="${book.title}">
+                <img src="${imageUrl}" alt="${book.title}">
                 <h2>${book.title}</h2>
                 <p>${book.examName}</p>
                 <a href="${book.downloadLink}" download>Download PDF</a>
