@@ -1,20 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
     const books = [
-        {
-            title: 'NEET 11 YEARS PYQ CHAPTERWISE',
-            examName: 'NEET',
-            downloadLink: 'https://adrinolinks.com/11yearsneet'
-        },
-        {
-            title: 'Advanced Physics',
-            examName: 'Physics Exam',
-            downloadLink: 'https://example.com/physics.pdf'
-        },
-        {
-            title: 'Introduction to Chemistry',
-            examName: 'Chemistry Exam',
-            downloadLink: 'https://example.com/chemistry.pdf'
-        }
+    {
+        title: '11 Years NEET PYQ',
+        downloadLink: 'https://drive.google.com/drive/folders/1nW33hL87BTTZt-TMCRi6x-YRwDQ1ZBAY',
+        examName: 'NEET'
+    },
+    {
+        title: '33 Years NEET PYQ',
+        downloadLink: 'https://drive.google.com/drive/folders/1nTLeTTRO8m4RDKfJY8mtJ74P_E7chzVx',
+        examName: 'NEET'
+    },
+    {
+        title: '45 Days Crash Course',
+        downloadLink: 'https://drive.google.com/drive/folders/14Bs9AwzgAIOUEjwW6unVkFnluqDsdUQW',
+        examName: 'NEET'
+    },
+    {
+        title: 'Akash Mindmaps',
+        downloadLink: 'https://drive.google.com/drive/folders/1nnuvmyZCOOzDQOTG5OgSiWIZacBsQTCK',
+        examName: 'NEET'
+    },
+    {
+        title: 'Akash Modules',
+        downloadLink: 'https://drive.google.com/drive/folders/1nQgjv5LsE0Mc-Yy6J40lpmlDBxu7hn3Z',
+        examName: ['NEET', 'AKASH']
+    },
+    {
+        title: 'Akash Test Series',
+        downloadLink: 'https://drive.google.com/drive/folders/1nCgD_HXNlKel6cbCPXHuelazG730v9AF',
+        examName: ['NEET', 'AKASH']
+    },
+    {
+        title: 'Allen Modules',
+        downloadLink: 'https://drive.google.com/drive/folders/1nNOPW1OUniPt2JFCZwS8Er0Rso78GeNE',
+        examName: ['NEET', 'Allen']
+    },
+    {
+        title: 'Allen Test Series',
+        downloadLink: 'https://drive.google.com/drive/folders/1nHtAPGDqxfFe9rS4Stf1QJ85xnsYRFg8',
+        examName: ['NEET', 'ALLEN']
+    },
+    {
+        title: 'Hacks by Parthgoyal',
+        downloadLink: 'https://drive.google.com/drive/folders/1niJChK5JuUXyuaOaS95zY2KiT0CXF3ZH',
+        examName: 'NEET'
+    }
+
         // Add more books as needed
     ];
 
