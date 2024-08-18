@@ -111,9 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
         modalTitle.textContent = book.title;
         modalExamName.textContent = book.examName;
 
-        // Set the download link to open through the Adrinolink URL
+        // Directly use the URL without encoding
         const baseUrl = 'https://adrinolinks.in/st?api=5a2539904639474b5f3da41f528199204eb76f65&url=';
-        const downloadUrl = baseUrl + encodeURIComponent(book.downloadLink);
+        const downloadUrl = baseUrl + book.downloadLink;
+
         modalDownloadLink.href = downloadUrl;
         modalDownloadLink.textContent = 'Download PDF';
 
@@ -145,8 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
             bookElement.querySelector('.download-button').addEventListener('click', (event) => {
                 event.preventDefault(); // Prevent the default action of the link
 
+                // Directly use the URL without encoding
                 const baseUrl = 'https://adrinolinks.in/st?api=5a2539904639474b5f3da41f528199204eb76f65&url=';
-                const downloadUrl = baseUrl + encodeURIComponent(event.target.getAttribute('data-link'));
+                const downloadUrl = baseUrl + event.target.getAttribute('data-link');
 
                 // Open the generated URL
                 window.open(downloadUrl, '_blank');
