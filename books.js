@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             title: 'NEET 11 YEARS PYQ CHAPTERWISE',
             examName: 'NEET',
-            downloadLink: 'https://example.com/11yearsneet'
+            downloadLink: 'https://adrinolinks.com/11yearsneet'
         },
         {
             title: 'Advanced Physics',
@@ -94,38 +94,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function generateShortenedUrl(originalUrl) {
-        const date = new Date();
-        const pdfId = `pdf-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}-${Math.random().toString(36).substr(2, 9)}`;
-        const alias = `${pdfId}-${date.toISOString().split('T')[0]}`;
+    function renderBooksForPage(filteredBooks, page) {
+        const startIndex = (page - 1) * booksPerPage;
+        const endIndex = startIndex + booksPerPage;
+        renderBooks(filteredBooks.slice(startIndex, endIndex));
+    }
 
-        try {
-            const response = await fetch(`https://adrinolinks.in/api?api=5a2539904639474b5f3da41f528199204eb76f65&url=${encodeURIComponent(originalUrl)}&alias=${alias}`);
-            const data = await response.json();
-            if (data.status === 'success') {
-                return data.shortenedUrl;
-            } else {
-                console.error('API Error:', data);
-                return originalUrl; // Fallback to original URL
-            }
-        } catch (error) {
-            console.error('Fetch Error:', error);
-            return originalUrl; // Fallback to original URL
-        }
+    function updatePaginationControls(filteredBooks) {
+        document.getElementById('prev-page').disabled = currentPage === 1;
+        document.getElementById('next-page').disabled = (currentPage * booksPerPage) >= filteredBooks.length;
+        document.getElementById('page-info').textContent = `Page ${currentPage}`;
     }
 
     function openModal(book) {
         modalImage.src = generateBookImage(book.title, book.examName);
         modalTitle.textContent = book.title;
         modalExamName.textContent = book.examName;
-        generateShortenedUrl(book.downloadLink).then(shortenedUrl => {
-            modalDownloadLink.href = '#';
-            modalDownloadLink.textContent = 'Download PDF';
-            modalDownloadLink.onclick = () => {
-                window.location.href = shortenedUrl;
-                return false; // Prevent default anchor behavior
-            };
-        });
+
+        // Set the download link to open through the Adrinolink URL
+        const baseUrl = 'https://adrinolinks.in/st?api=5a2539904639474b5f3da41f528199204eb76f65&url=';
+        const downloadUrl = baseUrl + encodeURIComponent(book.downloadLink);
+        modalDownloadLink.href = downloadUrl;
+        modalDownloadLink.textContent = 'Download PDF';
+
         modal.style.display = 'block';
     }
 
@@ -146,29 +137,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="${imageUrl}" alt="${book.title}">
                 <h2>${book.title}</h2>
                 <p>${book.examName}</p>
-                <a href="#" class="download-link">Download PDF</a>
+                <a href="#" class="download-button" data-link="${book.downloadLink}">Download PDF</a>
                 <button class="view-details">View Details</button>
             `;
 
-            bookElement.querySelector('.view-details').addEventListener('click', () => openModal(book));
-            bookElement.querySelector('.download-link').addEventListener('click', (event) => {
-                event.preventDefault();
-                generateShortenedUrl(book.downloadLink).then(shortenedUrl => {
-                    window.location.href = shortenedUrl;
-                });
+            // Add event listener to dynamically generate download link
+            bookElement.querySelector('.download-button').addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent the default action of the link
+
+                const baseUrl = 'https://adrinolinks.in/st?api=5a2539904639474b5f3da41f528199204eb76f65&url=';
+                const downloadUrl = baseUrl + encodeURIComponent(event.target.getAttribute('data-link'));
+
+                // Open the generated URL
+                window.open(downloadUrl, '_blank');
             });
+
+            bookElement.querySelector('.view-details').addEventListener('click', () => openModal(book));
             bookList.appendChild(bookElement);
         });
         updatePaginationControls(filteredBooks);
-    }
-
-    function renderBooksForPage(filteredBooks, page) {
-        const startIndex = (page - 1) * booksPerPage;
-        const endIndex = Math.min(startIndex + booksPerPage, filteredBooks.length);
-        renderBooks(filteredBooks.slice(startIndex, endIndex));
-        document.getElementById('page-info').textContent = `Page ${page}`;
-        document.getElementById('prev-page').disabled = page === 1;
-        document.getElementById('next-page').disabled = endIndex >= filteredBooks.length;
     }
 
     function sortBooks(books, criterion) {
