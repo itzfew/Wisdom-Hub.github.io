@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+ document.addEventListener('DOMContentLoaded', () => {
     const books = [
         { title: '11 Years NEET PYQ', downloadLink: 'https://drive.google.com/drive/folders/1nW33hL87BTTZt-TMCRi6x-YRwDQ1ZBAY', examName: 'NEET' },
         { title: '33 Years NEET PYQ', downloadLink: 'https://drive.google.com/drive/folders/1nTLeTTRO8m4RDKfJY8mtJ74P_E7chzVx', examName: 'NEET' },
