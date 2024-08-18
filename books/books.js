@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const books = [
         {
-            title: 'Mathematics for Engineers',
-            image: 'https://via.placeholder.com/200x300?text=Math',
-            examName: 'Math Exam',
-            downloadLink: 'https://example.com/math.pdf'
+            title: 'NEET 11 YEARS PYQ CHAPTERWISE',
+            image: 'https://itzfew.github.io/Wisdom-Hub.github.io/books/Img/neetpyq11.png',
+            examName: 'NEET',
+            downloadLink: 'https://adrinolinks.com/11yearsneet'
         },
         {
             title: 'Advanced Physics',
