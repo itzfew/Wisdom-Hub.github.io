@@ -94,13 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function generateDownloadLink(originalUrl) {
+    async function generateShortenedUrl(originalUrl) {
         const date = new Date();
         const pdfId = `pdf-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}-${Math.random().toString(36).substr(2, 9)}`;
-        const alias = `${pdfId}-${encodeURIComponent(originalUrl.split('/').pop().split('.')[0])}`;
+        const alias = `${pdfId}-${encodeURIComponent(date.toISOString().split('T')[0])}`;
 
         try {
-            const response = await fetch(`https://adrinolinks.com/api?api=5a2539904639474b5f3da41f528199204eb76f65&url=${encodeURIComponent(originalUrl)}&alias=${alias}`);
+            const response = await fetch(`https://adrinolinks.in/api?api=5a2539904639474b5f3da41f528199204eb76f65&url=${encodeURIComponent(originalUrl)}&alias=${alias}`);
             const data = await response.json();
             if (data.status === 'success') {
                 return data.shortenedUrl;
@@ -118,9 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
         modalImage.src = generateBookImage(book.title, book.examName);
         modalTitle.textContent = book.title;
         modalExamName.textContent = book.examName;
-        generateDownloadLink(book.downloadLink).then(shortenedUrl => {
-            modalDownloadLink.href = shortenedUrl;
+        generateShortenedUrl(book.downloadLink).then(shortenedUrl => {
+            modalDownloadLink.href = '#';
             modalDownloadLink.textContent = 'Download PDF';
+            modalDownloadLink.onclick = () => {
+                window.location.href = shortenedUrl;
+                return false;
+            };
         });
         modal.style.display = 'block';
     }
@@ -149,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bookElement.querySelector('.view-details').addEventListener('click', () => openModal(book));
             bookElement.querySelector('.download-link').addEventListener('click', (event) => {
                 event.preventDefault();
-                generateDownloadLink(book.downloadLink).then(shortenedUrl => {
+                generateShortenedUrl(book.downloadLink).then(shortenedUrl => {
                     window.location.href = shortenedUrl;
                 });
             });
