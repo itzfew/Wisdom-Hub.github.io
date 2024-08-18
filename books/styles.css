@@ -37,8 +37,15 @@ header input, header select {
 }
 
 .book img {
-    max-width: 100%;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     border-radius: 8px;
+    transition: transform 0.2s;
+  height:250px;
+}
+
+.book img:hover {
+    transform: scale(1.05);
 }
 
 .book h2 {
