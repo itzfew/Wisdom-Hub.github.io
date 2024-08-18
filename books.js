@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function generateShortenedUrl(originalUrl) {
         const date = new Date();
         const pdfId = `pdf-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}-${Math.random().toString(36).substr(2, 9)}`;
-        const alias = `${pdfId}-${encodeURIComponent(date.toISOString().split('T')[0])}`;
+        const alias = `${pdfId}-${date.toISOString().split('T')[0]}`;
 
         try {
             const response = await fetch(`https://adrinolinks.in/api?api=5a2539904639474b5f3da41f528199204eb76f65&url=${encodeURIComponent(originalUrl)}&alias=${alias}`);
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalDownloadLink.textContent = 'Download PDF';
             modalDownloadLink.onclick = () => {
                 window.location.href = shortenedUrl;
-                return false;
+                return false; // Prevent default anchor behavior
             };
         });
         modal.style.display = 'block';
