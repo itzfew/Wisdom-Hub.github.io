@@ -3,45 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Bookstore</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Book List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px 0;
+            border-bottom: 5px solid lime; /* Solid lime color line */
+        }
+        #category-filter {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 200px;
+        }
+        #book-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .book {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 15px;
+            text-align: center;
+            width: 220px;
+        }
+        .book img {
+            border-radius: 4px;
+            max-width: 100%;
+            height: auto;
+        }
+        .book h2 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .book p {
+            font-size: 14px;
+            color: #666;
+        }
+        .download-button, .view-details, .pagination button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            border: 2px solid transparent; /* Add border with color later */
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .download-button {
+            background-color: #007bff;
+            border-color: #007bff; /* Match the border color with background */
+        }
+        .download-button:hover {
+            background-color: #0056b3;
+            border-color: #0056b3; /* Darker border color on hover */
+        }
+        .view-details {
+            background-color: #28a745;
+            border-color: #28a745; /* Match the border color with background */
+        }
+        .view-details:hover {
+            background-color: #218838;
+            border-color: #1e7e34; /* Darker border color on hover */
+        }
+        .pagination {
+            text-align: center;
+            margin: 20px;
+        }
+        .pagination button {
+            background-color: #007bff;
+            border-color: #007bff; /* Match the border color with background */
+            padding: 10px 20px;
+        }
+        .pagination button:hover {
+            background-color: #0056b3;
+            border-color: #0056b3; /* Darker border color on hover */
+        }
+        .pagination button:disabled {
+            background-color: #ccc;
+            border-color: #ccc;
+            cursor: not-allowed;
+        }
+        .pagination .page-info {
+            margin: 10px;
+            font-size: 16px;
+        }
+        #book-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        #book-modal .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        #book-modal img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        #close-modal {
+            background: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #close-modal:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>PDF Bookstore</h1>
-        <input type="text" id="search" placeholder="Search for books...">
-        <select id="sort">
-            <option value="title">Sort by Title</option>
-            <option value="examName">Sort by Exam Name</option>
-        </select>
-        <select id="category-filter">
-            <option value="">All Categories</option>
-            <option value="Mathematics">Mathematics</option>
-            <option value="Physics">Physics</option>
-            <option value="Chemistry">Chemistry</option>
-            <!-- Add more categories as needed -->
-        </select>
-    </header>
-    <main>
-        <section id="book-list">
-            <!-- Books will be dynamically inserted here -->
-        </section>
-        <nav id="pagination">
-            <button id="prev-page" disabled>Previous</button>
-            <span id="page-info">Page 1</span>
-            <button id="next-page">Next</button>
-        </nav>
-    </main>
-    <div id="book-modal" class="modal">
+    <div class="header">
+        <h1>BOOKSTORE</h1>
+    </div>
+    <select id="category-filter">
+        <option value="">All Categories</option>
+        <option value="NEET">NEET</option>
+        <option value="AKASH">AKASH</option>
+        <option value="Allen">Allen</option>
+        <!-- Add more categories as needed -->
+    </select>
+    <div id="book-list"></div>
+    <div class="pagination">
+        <button id="prev-page">Previous</button>
+        <span class="page-info">Page 1</span>
+        <button id="next-page">Next</button>
+    </div>
+    <div id="book-modal">
         <div class="modal-content">
-            <span id="close-modal" class="close">&times;</span>
+            <button id="close-modal">Close</button>
             <img id="modal-image" src="" alt="">
             <h2 id="modal-title"></h2>
             <p id="modal-exam-name"></p>
-            <a id="modal-download-link" href="" download>Download PDF</a>
+            <a id="modal-download-link" href="#" target="_blank">Download PDF</a>
         </div>
     </div>
-    <canvas id="book-image-canvas" width="200" height="300" style="display: none;"></canvas>
-    <script src="books.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
