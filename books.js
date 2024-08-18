@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             title: 'NEET 11 YEARS PYQ CHAPTERWISE',
             examName: 'NEET',
-            downloadLink: 'https://adrinolinks.com/11yearsneet'
+            downloadLink: 'https://example.com/11yearsneet'
         },
         {
             title: 'Advanced Physics',
