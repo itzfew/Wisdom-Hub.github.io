@@ -1,0 +1,20 @@
+{
+    "books": [
+        {
+            "title": "Mathematics for Beginners",
+            "exam": "SAT",
+            "downloadLink": "path/to/math-beginner.pdf"
+        },
+        {
+            "title": "Advanced Physics",
+            "exam": "GRE",
+            "downloadLink": "path/to/advanced-physics.pdf"
+        },
+        {
+            "title": "History of Art",
+            "exam": "AP",
+            "downloadLink": "path/to/history-of-art.pdf"
+        }
+        // Add more books as needed
+    ]
+}
