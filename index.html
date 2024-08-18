@@ -3,23 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Download App</title>
+    <title>PDF Bookstore</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Book Download App</h1>
+        <h1>PDF Bookstore</h1>
+        <input type="text" id="search" placeholder="Search for books...">
+        <select id="sort">
+            <option value="title">Sort by Title</option>
+            <option value="examName">Sort by Exam Name</option>
+        </select>
+        <select id="category-filter">
+            <option value="">All Categories</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Physics">Physics</option>
+            <option value="Chemistry">Chemistry</option>
+            <!-- Add more categories as needed -->
+        </select>
     </header>
     <main>
-        <div class="filters">
-            <input type="text" id="search" placeholder="Search by title...">
-            <select id="examFilter">
-                <option value="">All Exams</option>
-                <!-- Options will be dynamically filled -->
-            </select>
-        </div>
-        <div id="bookList" class="book-grid"></div>
+        <section id="book-list">
+            <!-- Books will be dynamically inserted here -->
+        </section>
+        <nav id="pagination">
+            <button id="prev-page" disabled>Previous</button>
+            <span id="page-info">Page 1</span>
+            <button id="next-page">Next</button>
+        </nav>
     </main>
-    <script src="script.js"></script>
+    <div id="book-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <img id="modal-image" src="" alt="">
+            <h2 id="modal-title"></h2>
+            <p id="modal-exam-name"></p>
+            <a id="modal-download-link" href="" download>Download PDF</a>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
 </body>
 </html>
