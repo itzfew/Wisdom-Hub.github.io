@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search');
     const examFilter = document.getElementById('examFilter');
 
-    fetch('books.json')
+    fetch('https://raw.githubusercontent.com/itzfew/Wisdom-Hub.github.io/main/books.json')
         .then(response => response.json())
         .then(data => {
             const books = data.books;
